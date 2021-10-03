@@ -41,7 +41,7 @@
 \fancyhead[L]{
   \begin{tabular}{rl}
     \begin{picture}(25,15)(0,0)
-    \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{./assets/hcmut.png}}
     \end{picture}
     \begin{tabular}{l}
       \textbf{\bf \ttfamily University of Technology, Ho Chi Minh City}\\
@@ -86,7 +86,7 @@
 
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{hcmut.png}
+    \includegraphics[width=0.5\textwidth]{./assets/hcmut.png}
   \end{figure}
 
   \vspace{1cm}
@@ -115,7 +115,7 @@
   \end{table}
 
   \begin{center}
-    {\footnotesize HO CHI MINH CITY, SEPTEMBER 2021}
+    {\footnotesize HO CHI MINH CITY, OCTOBER 2021}
   \end{center}
 \end{titlepage}
 
@@ -140,20 +140,14 @@
 \tableofcontents
 \newpage
 
-\section{Context}
+\section{Task 1}
+\subsection{Context, stakeholders, expectations and scope}
+\subsubsection{Context}
 In restaurant business, the POS systems include many services such as table reservation, food ordering, alerts, billing (credit card or cash), catalogue system and processing user database
 During the COVID-19 pandemic, the need of using POS systems raised dramatically because of its portability, business intelligence and reducing wasted effort and opportunity to scale a large business
 Moreover, it can be easily extended for further scale of the business.
 
-\section{Scope}
-Specifically, the system provides an automated price list and allows creation and printing of receipts based upon transactions of clients
-The system also enables creation and automatic updates of inventory whenever new entries or deletion of entries are made
-Only the management has access on the database for security reasons
-User accounts will be created to handle the daily transactions of the business, like payments and inventory
-Only those with such accounts can be able to access the system
-Also, the system will handle credit card transactions, support take-away options and also minimize work efforts across many work phases.
-
-\section{Stakeholders}
+\subsubsection{Stakeholders}
 \textbf{Managers} --- Either the restaurant owners managing the restaurant themselves or hired managers
 The requirements provided by them will be directly delivered to the developers
 They can provide about the feature or the UI they want to use when managing their employees.
@@ -165,13 +159,13 @@ They should be able to tell the developers what is comfortable to use and does n
 The software will gather information from customers (with their permission) to improve the experience
 Feedback features and occasional surveys will also be included to help even further.
 
-\section{Expectation}
+\subsubsection{Expectation}
 For optimizing the workflow of the restaurant and its service quality, there should be an intermediate and automated worker to handle repetitive tasks with time-efficiency and high precision
 This software is expected to be a web-based Point of sale (POS) system that solves the fore-mentioned problem and it follows the business flow as described in Figure 1.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{customer_figure.png}
+  \includegraphics[width=0.9\textwidth]{./assets/t1/customer_figure.png}
   \caption{Customer-drawing workflow}
 \end{figure}
 
@@ -191,7 +185,7 @@ This software User Interface (UI) will mainly be based on these Figures below if
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{UI_menu.png}
+  \includegraphics[width=\textwidth]{./assets/t1/UI_menu.png}
   \caption{The menu screen}
 \end{figure}
 
@@ -199,7 +193,7 @@ This is the main menu for both take-away and dine-in customers.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{UI_detail.png}
+  \includegraphics[width=0.9\textwidth]{./assets/t1/UI_detail.png}
   \caption{The detail item screen}
 \end{figure}
 
@@ -208,19 +202,27 @@ When changing the Quantity or click on the shopping button, returning to the Men
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{UI_payment.png}
+  \includegraphics[width=0.9\textwidth]{./assets/t1/UI_payment.png}
   \caption{The payment page}
 \end{figure}
 
+\subsubsection{Scope}
+Specifically, the system provides an automated price list and allows creation and printing of receipts based upon transactions of clients
+The system also enables creation and automatic updates of inventory whenever new entries or deletion of entries are made
+Only the management has access on the database for security reasons
+User accounts will be created to handle the daily transactions of the business, like payments and inventory
+Only those with such accounts can be able to access the system
+Also, the system will handle credit card transactions, support take-away options and also minimize work efforts across many work phases.
+
 After hitting payment in Figure 2 will take the customer to this page for choosing the payment method or inserting credit card information.
-\section{Requirements}
-\subsection{Functional Requirement}
+\subsection{Requirements}
+\subsubsection{Functional Requirement}
 The system should not allow direct contact between Clerks and Customers so there are separable interfaces for each actors.
 \begin{enumerate}
   \item{Customers}
         \begin{figure}[H]
           \centering
-          \includegraphics[width=0.9\textwidth]{Customer_flow.png}
+          \includegraphics[width=0.9\textwidth]{./assets/t1/Customer_flow.png}
           \caption{The customer flow}
         \end{figure}
   \item[]According to the workflow, we can identify some functional requirements that meet the demand of the customers.
@@ -234,7 +236,7 @@ The system should not allow direct contact between Clerks and Customers so there
   \item{Clerks}
         \begin{figure}[H]
           \centering
-          \includegraphics[width=0.9\textwidth]{Clerk_workflow.png}
+          \includegraphics[width=0.9\textwidth]{./assets/t1/Clerk_workflow.png}
           \caption{The clerk workflow}
         \end{figure}
   \item[]Based on the workflow of the clerks, we can define some functional requirements for the system.
@@ -243,7 +245,7 @@ The system should not allow direct contact between Clerks and Customers so there
           \item The clerks can give special recommendations to the customers.
         \end{itemize}
 \end{enumerate}
-\subsection{Non-functional Requirement}
+\subsubsection{Non-functional Requirement}
 According to the expectation of the restaurant owner about the system, we can define the non-functional requirements.
 \begin{itemize}
   \item The system can be extendable in be use in multiple restaurants.
@@ -253,21 +255,21 @@ According to the expectation of the restaurant owner about the system, we can de
   \item The system should allow non-direct contact between Clerks and Customers.
 \end{itemize}
 
-\section{Full system use-case diagram}
+\subsubsection{Full system use-case diagram}
 From the workflow chart and the other party's requirements, we obtain the following use-case diagram.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{PieceOfSale.png}
+  \includegraphics[width=0.9\textwidth]{./assets/t1/PieceOfSale.png}
   \caption{Full system use-case diagram}
 \end{figure}
 
-\section{One feature use-case diagram and table}
+\subsection{One feature use-case diagram and table}
 The following use-case diagram and table are for paying the bill use-case.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{PayOrder.png}
+  \includegraphics[width=0.9\textwidth]{./assets/t1/PayOrder.png}
   \caption{Pay the bill use-case diagram}
 \end{figure}
 
@@ -284,5 +286,28 @@ The following use-case diagram and table are for paying the bill use-case.
     \bottomrule
   \end{tabular}
 \end{center}
+
+\newpage
+
+\section{Task 2}
+\subsection{Activity diagram of major functional requirements}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{./assets/t2/Activity_Diagram.png}
+  \caption{Activity diagram}
+\end{figure}
+
+\subsection{Sequence of diagram of the given use-case}
+TODO
+
+\subsection{Class diagram}
+TODO
+
+\section{Task 3}
+\subsection{Architectural approach description}
+TODO
+
+\subsection{Implementation diagram of major functional requirements}
+TODO
 
 \end{document}
