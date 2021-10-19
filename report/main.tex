@@ -96,7 +96,7 @@
       \textbf{\Large Software Engineering (CO3001)} \\
       {}                                            \\
       \midrule                                      \\
-      \textbf{\Large Report (Task 1)}               \\
+      \textbf{\Large Report (Task 3)}               \\
       {}                                            \\
       \textbf{\Huge Restaurant POS 2.0}             \\
       {}                                            \\
@@ -108,9 +108,8 @@
 
   \begin{table}[h]
     \begin{tabular}{rl}
-      \hspace{1cm} Advisors: & Assoc
-      Prof.\ Bui Hoai Thang                           \\
-                             & Mr.\ Bang Ngoc Bao Tam \\
+      \hspace{1cm} Advisors: & Assoc Prof.\ Bui Hoai Thang \\
+                             & Mr.\ Bang Ngoc Bao Tam      \\
     \end{tabular}
   \end{table}
 
@@ -276,13 +275,13 @@ The following use-case diagram and table are for paying the bill use-case.
 \begin{center}
   \begin{tabular}{*{2}{l}}
     \toprule
-    Use-case name  & Pay order / Pay the bill                     \\
-    Actors         & Customer                                     \\
-    Pre-condition  & An order is confirmed                        \\
-    Trigger        & Customer wants to pay the bill               \\
-    Basic path     & 1. Customer is given the bill of the order   \\
-                   & 2. Customer performs the payment on the POS  \\
-                   & 3. The POS keeps a record of the transaction \\
+    Use-case name & Pay order / Pay the bill                     \\
+    Actors        & Customer                                     \\
+    Pre-condition & An order is confirmed                        \\
+    Trigger       & Customer wants to pay the bill               \\
+    Basic path    & 1. Customer is given the bill of the order   \\
+                  & 2. Customer performs the payment on the POS  \\
+                  & 3. The POS keeps a record of the transaction \\
     \bottomrule
   \end{tabular}
 \end{center}
@@ -315,9 +314,28 @@ The following use-case diagram and table are for paying the bill use-case.
 
 \section{Task 3}
 \subsection{Architectural approach description}
-TODO
+\textbf{Model-view-controller} (usually known as \textbf{MVC}) is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements.
+
+This design pattern is considered to be universal when it comes to web application.
+Because of how it works, most of the webs, in particular it applies well to the idea that an application is accessed in the following way:
+\begin{itemize}
+  \item The user asks for some resource
+  \item Some underlying data is retrieved from somewhere.
+  \item A template is then applied to that data in order to show it to the user.
+\end{itemize}
+
+This is undeniably the way the web works, most Web MVC frameworks start from the assumption that each user produces relatively few requests asking for big chunks of resources at a time.
+This is exactly what the Restaurant POS project requires when the first requirement is Web-based software serving convenience for the users.
+
+The benefits of of using this approach includes: faster development, the ability to provide multiple views, supports asynchronous technique and avoid model collapsing by only one modification.
+This is perfect for popular customer-serving web applications, which in this case is our application.
 
 \subsection{Implementation diagram of major functional requirements}
-TODO
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{./assets/t3/3.2.png}
+  \caption{Deployment diagram}
+\end{figure}
 
 \end{document}
