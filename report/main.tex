@@ -7,16 +7,10 @@
 % Encoding
 \usepackage[utf8]{vntex, inputenc}
 \usepackage[english]{babel}
-\usepackage{amsmath, amssymb, gensymb}
+\usepackage{amsmath, amssymb, textcomp, gensymb}
 
 % Better table
 \usepackage{array, booktabs, multicol, multirow, siunitx, tabularx}
-
-% Code space
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tikz}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{minted, verbatim} % needs --shell-escape flag and Pygments
 
 % Graphics
 \usepackage{caption, float}
@@ -24,7 +18,6 @@
 % Page setup
 \allowdisplaybreaks{} % to have page breaks inside align* environment
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=red,colorlinks=true}
-\usemintedstyle{emacs}
 \numberwithin{equation}{section}
 \renewcommand{\arraystretch}{1.2} % space between table rows
 
@@ -63,15 +56,6 @@
 % \everymath{\color{blue}}
 
 \newcommand*\mean[1]{\bar{#1}}
-\newenvironment{code}[1]
-{\VerbatimEnvironment%
-  \begin{mdframed}[leftline=false,rightline=false,backgroundcolor=magenta!10,nobreak=false]%
-    \begin{minted}[linenos=true,breaklines,breaksymbolleft=,obeytabs=true,tabsize=2]{#1}%
-}
-{
-    \end{minted}%
-  \end{mdframed}%
-}
 
 \begin{document}
 
@@ -94,9 +78,10 @@
   \begin{center}
     \begin{tabular}{c}
       \textbf{\Large Software Engineering (CO3001)} \\
+      \textbf{\Large The Dining Philosophers}       \\
       {}                                            \\
       \midrule                                      \\
-      \textbf{\Large Report (Task 4)}               \\
+      \textbf{\Large Report}                        \\
       {}                                            \\
       \textbf{\Huge Restaurant POS 2.0}             \\
       {}                                            \\
@@ -114,7 +99,7 @@
   \end{table}
 
   \begin{center}
-    {\footnotesize HO CHI MINH CITY, OCTOBER 2021}
+    {\footnotesize HO CHI MINH CITY, NOVEMBER 2021}
   \end{center}
 \end{titlepage}
 
@@ -123,14 +108,13 @@
 \begin{center}
   \begin{tabular}{llcc}
     \toprule
-    \textbf{No.} & \textbf{Full name}     & \textbf{Student ID} \\
+    \textbf{No.} & \textbf{Full name}     & \textbf{Student ID} & \textbf{Percentage of work} \\
     \midrule
-    1            & Nguyễn Hoàng           & 1952255             \\
-    2            & Trần Nguyễn Phước Nhân & 1952893             \\
-    3            & Nguyễn Chính Khôi      & 1952793             \\
-    4            & Đào Tiến Tuấn          & 1953069             \\
-    5            & Đinh Huy Thiện         & 1952462
-    \\
+    1            & Nguyễn Hoàng           & 1952255             & 100\%                       \\
+    2            & Trần Nguyễn Phước Nhân & 1952893             & 100\%                       \\
+    3            & Nguyễn Chính Khôi      & 1952793             & 100\%                       \\
+    4            & Đào Tiến Tuấn          & 1953069             & 100\%                       \\
+    5            & Đinh Huy Thiện         & 1952462             & 100\%                       \\
     \bottomrule
   \end{tabular}
 \end{center}
@@ -139,216 +123,10 @@
 \tableofcontents
 \newpage
 
-\section{Task 1}
-\subsection{Context, stakeholders, expectations and scope}
-\subsubsection{Context}
-In restaurant business, the POS systems include many services such as table reservation, food ordering, alerts, billing (credit card or cash), catalogue system and processing user database
-During the COVID-19 pandemic, the need of using POS systems raised dramatically because of its portability, business intelligence and reducing wasted effort and opportunity to scale a large business
-Moreover, it can be easily extended for further scale of the business.
+\include{./req}
 
-\subsubsection{Stakeholders}
-\textbf{Managers} --- Either the restaurant owners managing the restaurant themselves or hired managers
-The requirements provided by them will be directly delivered to the developers
-They can provide about the feature or the UI they want to use when managing their employees.
+\include{./sysmodel}
 
-\textbf{Clerks} --- The environment for clerks should be professional for them to deliver the convenience and time-efficiency to the customers, which is important
-They should be able to tell the developers what is comfortable to use and does not waste too much time.
-
-\textbf{Customers} --- Despite not working directly with developers, they can still contribute to the development of the software
-The software will gather information from customers (with their permission) to improve the experience
-Feedback features and occasional surveys will also be included to help even further.
-
-\subsubsection{Expectation}
-For optimizing the workflow of the restaurant and its service quality, there should be an intermediate and automated worker to handle repetitive tasks with time-efficiency and high precision
-This software is expected to be a web-based Point of sale (POS) system that solves the fore-mentioned problem and it follows the business flow as described in Figure 1.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./assets/t1/customer_figure.png}
-  \caption{Customer-drawing workflow}
-\end{figure}
-
-Besides the previous requirement there are customized requests that have been made by the owners of the restaurant
-These will be taken into consideration and implemented into the software:
-
-\begin{itemize}
-  \item The Customers should be able to interact with the Clerks without direct contact.
-  \item Without having to install apps, there should be QR code and some other Web features for the customers.
-  \item Customers can access this software on most platforms like mobile devices, tablets, laptops or even personal computers.
-  \item The flexibility should be considered for multiple restaurants can be used if there is an expansion of quantity.
-  \item The transaction rate measured recently is approximately 300 orders/day.
-\end{itemize}
-
-The eye-catching features that defines the software quality is the graphic design, which is also provided by the client
-This software User Interface (UI) will mainly be based on these Figures below if there are no changes in the future:
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{./assets/t1/UI_menu.png}
-  \caption{The menu screen}
-\end{figure}
-
-This is the main menu for both take-away and dine-in customers.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./assets/t1/UI_detail.png}
-  \caption{The detail item screen}
-\end{figure}
-
-This is the detail item screen when clicking to select an item in Figure 2
-When changing the Quantity or click on the shopping button, returning to the Menu screen and update the sum-up Your Cart in the right hand side.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./assets/t1/UI_payment.png}
-  \caption{The payment page}
-\end{figure}
-
-\subsubsection{Scope}
-Specifically, the system provides an automated price list and allows creation and printing of receipts based upon transactions of clients
-The system also enables creation and automatic updates of inventory whenever new entries or deletion of entries are made
-Only the management has access on the database for security reasons
-User accounts will be created to handle the daily transactions of the business, like payments and inventory
-Only those with such accounts can be able to access the system
-Also, the system will handle credit card transactions, support take-away options and also minimize work efforts across many work phases.
-
-After hitting payment in Figure 2 will take the customer to this page for choosing the payment method or inserting credit card information.
-\subsection{Requirements}
-\subsubsection{Functional Requirement}
-The system should not allow direct contact between Clerks and Customers so there are separable interfaces for each actors.
-\begin{enumerate}
-  \item{Customers}
-        \begin{figure}[H]
-          \centering
-          \includegraphics[width=0.9\textwidth]{./assets/t1/Customer_flow.png}
-          \caption{The customer flow}
-        \end{figure}
-  \item[]According to the workflow, we can identify some functional requirements that meet the demand of the customers.
-        \begin{itemize}
-          \item Customers can order food on the menu.
-          \item Customers can pay their bill.
-          \item Customers can give special requirements for their order which can be seen by the cook.
-          \item Customers can give feedback.
-          \item Customers can view their transaction history.
-        \end{itemize}
-  \item{Clerks}
-        \begin{figure}[H]
-          \centering
-          \includegraphics[width=0.9\textwidth]{./assets/t1/Clerk_workflow.png}
-          \caption{The clerk workflow}
-        \end{figure}
-  \item[]Based on the workflow of the clerks, we can define some functional requirements for the system.
-        \begin{itemize}
-          \item The manager can customize their QR code.
-          \item The clerks can give special recommendations to the customers.
-        \end{itemize}
-\end{enumerate}
-\subsubsection{Non-functional Requirement}
-According to the expectation of the restaurant owner about the system, we can define the non-functional requirements.
-\begin{itemize}
-  \item The system can be extendable in be use in multiple restaurants.
-  \item The system should be usable from a mobile device, a laptop or a tablet device.
-  \item The system should be implemented on the web.
-  \item Customers can get access to the website via the QR code.
-  \item The system should allow non-direct contact between Clerks and Customers.
-\end{itemize}
-
-\subsubsection{Full system use-case diagram}
-From the workflow chart and the other party's requirements, we obtain the following use-case diagram.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./assets/t1/PieceOfSale.png}
-  \caption{Full system use-case diagram}
-\end{figure}
-
-\subsection{One feature use-case diagram and table}
-The following use-case diagram and table are for paying the bill use-case.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./assets/t1/PayOrder.png}
-  \caption{Pay the bill use-case diagram}
-\end{figure}
-
-\begin{center}
-  \begin{tabular}{*{2}{l}}
-    \toprule
-    Use-case name & Pay order / Pay the bill                     \\
-    Actors        & Customer                                     \\
-    Pre-condition & An order is confirmed                        \\
-    Trigger       & Customer wants to pay the bill               \\
-    Basic path    & 1. Customer is given the bill of the order   \\
-                  & 2. Customer performs the payment on the POS  \\
-                  & 3. The POS keeps a record of the transaction \\
-    \bottomrule
-  \end{tabular}
-\end{center}
-
-\newpage
-
-\section{Task 2}
-\subsection{Activity diagram of major functional requirements}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.4\textwidth]{./assets/t2/Activity_Diagram.png}
-  \caption{Activity diagram}
-\end{figure}
-
-\subsection{Sequence of diagram of the given use-case}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{./assets/t2/sqd_2.3.png}
-  \caption{Sequence diagram of given use-case}
-\end{figure}
-
-\subsection{Class diagram}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{./assets/t2/Task 2.3_SE.png}
-  \caption{Class diagram}
-\end{figure}
-
-\newpage
-
-\section{Task 3}
-\subsection{Architectural approach description}
-\textbf{Model-view-controller} (usually known as \textbf{MVC}) is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements.
-
-This design pattern is considered to be universal when it comes to web application.
-Because of how it works, most of the webs, in particular it applies well to the idea that an application is accessed in the following way:
-\begin{itemize}
-  \item The user asks for some resource
-  \item Some underlying data is retrieved from somewhere.
-  \item A template is then applied to that data in order to show it to the user.
-\end{itemize}
-
-This is undeniably the way the web works, most Web MVC frameworks start from the assumption that each user produces relatively few requests asking for big chunks of resources at a time.
-This is exactly what the Restaurant POS project requires when the first requirement is Web-based software serving convenience for the users.
-
-The benefits of of using this approach includes: faster development, the ability to provide multiple views, supports asynchronous technique and avoid model collapsing by only one modification.
-This is perfect for popular customer-serving web applications, which in this case is our application.
-
-\subsection{Implementation diagram of major functional requirements}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{./assets/t3/3.2.png}
-  \caption{Deployment diagram}
-\end{figure}
-
-\newpage
-
-\section{Task 4}
-\subsection{Setup an online repository for version control}
-We use GitHub for this task.
-You can find our repository at \url{https://github.com/Smithienious/CO3001-Proj}.
-
-\subsection{Add documents, materials and folders}
-Check out the commit history at \url{https://github.com/Smithienious/CO3001-Proj/commits/main}.
-
-\subsection{Implement a MVP for the menu screen}
-We deployed a static page at \url{https://smithienious.github.io/CO3001-Proj/}.
+\include{./archdesign}
 
 \end{document}
