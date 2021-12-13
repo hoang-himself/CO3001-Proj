@@ -139,14 +139,28 @@ The following use-case diagram and table are for the pay order use-case.
 \begin{center}
   \begin{tabular}{*{2}{l}}
     \toprule
-    Use-case name & Pay order / Pay the bill                                    \\
-    Actors        & Customer                                                    \\
-    Pre-condition & An order is confirmed                                       \\
-    Trigger       & Customer wants to pay the bill                              \\
-    Basic path    & 1. POS displays bill to customer                            \\
-                  & 2. Customer chooses a payment method                        \\
-                  & 3. Customer pays using the chosen method                    \\
-                  & 4. POS confirms and saves the transaction record or receipt \\
+    Use-case name   & Payment                                                                          \\
+    \midrule
+    Summary         & Customer chooses the method of payment                                           \\
+    \midrule
+    Actors          & Customer                                                                         \\
+    \midrule
+    Pre-condition   & Customer confirms the cart                                                       \\
+    \midrule
+    Basic path      & 1. POS displays available methods of payment                                     \\
+                    & 2. Customer chooses a method of payment: cash or card                            \\
+                    & 3. Customer selects the method on POS software                                   \\
+                    & 4. Customer makes the payment                                                    \\
+                    & 5. Payment is approved and receipt is generated                                  \\
+    \midrule
+    Alternatives    & 1. Customer chooses to pay by any combination of 2 methods                       \\
+                    & 2. Customer chooses to pay by cash but don't have sufficient amount              \\
+                    & 3. Customer chooses to pay by card but enters wrong credentials                  \\
+                    & 4. Customer taps the card but tap is not applicable                              \\
+                    & 5. Customer enters the wrong pin 3 times and the card gets locked                \\
+                    & 6. If the total cost is above a certain threshold, the tap on card will not work \\
+    \midrule
+    Post conditions & Payment is approved                                                              \\
     \bottomrule
   \end{tabular}
 \end{center}
